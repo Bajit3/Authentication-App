@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
-const MONGODB_URI = "mongodb://localhost:27017/";
+// const MONGODB_URI = "mongodb://localhost:27017/";
+const MONGODB_URI ="mongodb+srv://ajit:ajit@cluster0.botzt9l.mongodb.net/"
 const MONGODB_DB = "test";
 
 let cachedClient;
