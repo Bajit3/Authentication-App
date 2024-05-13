@@ -1,7 +1,7 @@
 "use client"
-import DashboardHeader from '@/app/components/DashboardHeader';
-import PrivateRoute from '@/app/components/PrivateRoute';
-import { fetchAllUsers, incrementFollowCount } from '@/app/redux/actions/user';
+import DashboardHeader from '../../../../components/DashboardHeader';
+import PrivateRoute from '../../../../components/PrivateRoute';
+import { fetchAllUsers, incrementFollowCount } from '../../../../redux/actions/user';
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

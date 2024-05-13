@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from "@/app/redux/actions/user";
+import { loginUser } from "../../../../redux/actions/user";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";

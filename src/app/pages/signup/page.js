@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
-import { addUser } from "@/app/redux/actions/user";
+import { addUser } from "../../../../redux/actions/user";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 
