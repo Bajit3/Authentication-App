@@ -3,14 +3,13 @@ import bcrypt from "bcryptjs";
 import { connectToDatabase } from "../../db";
 
 
-export async function POST(request, response) {
+export async function POST(request) {
   try {
     const { db } = await connectToDatabase();
     const User = db.collection("users");
     const body = await request.json();
 
     const { firstName, lastName, email, password, phoneNumber, username } =  body;
-    console.log('body: ', body);
 
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
@@ -28,14 +27,12 @@ export async function POST(request, response) {
       phoneNumber,
       username
     };
-    console.log('newUser: ', newUser);
     await User.insertOne({ ...newUser });
     return NextResponse.json(
       { message: "User Created Successfully" },
       { status: 201 }
     );
   } catch (error) {
-    console.log('error: ', error);
     return NextResponse.json({ message: "Error Occured" }, { status: 500 });
   }
 }

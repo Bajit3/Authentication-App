@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "../db";
+import { validateRequest } from "../jwtHelper";
 
 export async function GET(req) {
-  // if (!await validateRequest(req)) {
-  //   return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  // }
+  const auth = await validateRequest(req);
+  if (auth==null) {
+    // req.headers
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
   try {
     const { db } = await connectToDatabase();
     const User = db.collection("users");

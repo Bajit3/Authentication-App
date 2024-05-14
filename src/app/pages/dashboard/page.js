@@ -1,10 +1,12 @@
 "use client"
+import axios from 'axios';
 import DashboardHeader from '../../../../components/DashboardHeader';
 import PrivateRoute from '../../../../components/PrivateRoute';
 import { fetchAllUsers, incrementFollowCount } from '../../../../redux/actions/user';
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ const DashboardPage = () => {
   const users = useSelector(state => state.user.users);
 
   useEffect(() => {
+    checkAuth()
     if (isAuthenticated) {
       dispatch(fetchAllUsers());
     }
@@ -34,6 +37,19 @@ const DashboardPage = () => {
   };
 
   const dashboardHeaderHeight = 64; 
+  const router = useRouter()
+
+  const checkAuth = async() => {
+    let token = localStorage.getItem('accessToken');
+    try{
+      await axios.get("/api/auth/check", {headers:{Authorization:"Bearer htghtgh"+token}})
+    }catch(e){
+      if(e?.response?.status==401){
+        localStorage.clear()
+        router.push("/pages/login")
+      }
+    }
+  }
 
   return (
     <PrivateRoute>
