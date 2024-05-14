@@ -52,15 +52,15 @@ export const logoutUser = () => (dispatch) => {
 export const fetchAllUsers = () => async (dispatch) => {
     try {
       dispatch({ type: FETCH_USERS_REQUEST });
-      const res = await axios.get('/api/getAll'); // Assuming this is the endpoint to get all users
+      const res = await axios.get('/api/getAll'); 
       dispatch({
         type: FETCH_USERS_SUCCESS,
-        payload: res.data, // Assuming response contains array of users
+        payload: res.data, 
       });
     } catch (error) {
       dispatch({
         type: FETCH_USERS_FAILURE,
-        payload: error.message, // You can adjust payload as needed, maybe error.response.data for specific error message
+        payload: error.message, 
       });
     }
   };
